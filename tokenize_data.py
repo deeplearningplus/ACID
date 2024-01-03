@@ -4,7 +4,7 @@ import torch.utils.data
 import os
 
 # load tokenizer
-tokenizer = AutoTokenizer.from_pretrained('opt-seq-pubmed-125m-003')
+tokenizer = AutoTokenizer.from_pretrained('opt-seq-pubmed-125m')
 max_length = 1024
 
 def tokenize_function(examples):
