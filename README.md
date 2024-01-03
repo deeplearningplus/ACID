@@ -47,8 +47,10 @@ eos_token=tokenizer.eos_token
 eos_id = tokenizer.convert_tokens_to_ids(eos_token)
 pad_id = tokenizer.pad_token_id
 
-inputs = torch.tensor(ds[1]["input_ids"]).unsqueeze(0)
-gen_tokens = model.generate(inputs, pad_token_id=pad_id, eos_token_id=eos_id, do_sample=False, max_new_tokens=30).cpu()
+inputs = torch.tensor(ds[0]["input_ids"]).unsqueeze(0)
+gen_tokens = model.generate(
+    inputs, pad_token_id=pad_id, eos_token_id=eos_id,
+    do_sample=False, max_new_tokens=30).cpu()
 gen_texts = tokenizer.decode(gen_tokens[0])
 print(gen_texts)
 ```
