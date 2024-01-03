@@ -1,0 +1,24 @@
+torchrun --nproc_per_node=8 --master_port=8080 train.py \
+    --model_name_or_path "opt-seq-pubmed-125m" \
+    --data_path tokenized_data \
+    --bf16 True \
+    --output_dir output_checkpoint \
+    --num_train_epochs 30 \
+    --per_device_train_batch_size 64 \
+    --per_device_eval_batch_size 4 \
+    --gradient_accumulation_steps 4 \
+    --evaluation_strategy "no" \
+    --save_strategy "steps" \
+    --save_steps 3000 \
+    --save_total_limit 1 \
+    --learning_rate 1e-4 \
+    --weight_decay 0.01 \
+    --warmup_ratio 0.03 \
+    --lr_scheduler_type "cosine" \
+    --logging_steps 32 \
+    --full_determinism \
+    --tf32 True \
+    --model_max_length 1024 \
+    --report_to tensorboard \
+    --dataloader_num_workers 2 \
+    --fsdp "full_shard auto_wrap" --fsdp_transformer_layer_cls_to_wrap 'OPTDecoderLayer'
