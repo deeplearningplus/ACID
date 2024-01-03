@@ -1,9 +1,6 @@
 # Language model enables end-to-end accurate detection of cancer from cell-free DNA
 
-## ACID
-
-
-## Introduction of ACID
+## Introduction
 
 We present a language model ACID – Affordable Cancer Interception and Diagnostics – that can achieve high classification performance in the diagnosis of cancer exclusively from using raw cfDNA sequencing reads. We formulate ACID as an autoregressive language model. ACID is pretrained with language sentences that are obtained from concatenation of raw sequencing reads and diagnostic labels. ACID can achieve high accuracy with just 10,000 reads per sample. In summary, we present an affordable, simple yet efficient end-to-end paradigm for cancer detection using raw cfDNA sequencing reads.
 
@@ -16,10 +13,16 @@ torch==1.13.1
 transformers==4.28.1
 datasets==2.10.1
 ```
-## Preprocess
+
+## How to train on the example data?
+### 1. Tokenizing input data
 python tokenize_data.py
 
-## Train ACID
+### 2. Generate a model of random weight for loading
+```python
+python generate_random_weight.py
+```
+### Train ACID
 bash train.sh
 
 ## Prediction
