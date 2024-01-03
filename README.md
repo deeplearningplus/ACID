@@ -43,8 +43,7 @@ model = AutoModelForCausalLM.from_pretrained(model_path)
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 ds = datasets.load_from_disk("tokenized_data")["test"]
 
-eos_token=tokenizer.eos_token
-eos_id = tokenizer.convert_tokens_to_ids(eos_token)
+eos_id = tokenizer.eos_token_id
 pad_id = tokenizer.pad_token_id
 
 inputs = torch.tensor(ds[0]["input_ids"]).unsqueeze(0)
